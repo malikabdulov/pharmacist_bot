@@ -1,0 +1,2 @@
+pymystem3>=0.2.0
+pyTelegramBotAPI>=4.4.0
