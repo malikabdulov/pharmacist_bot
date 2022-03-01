@@ -56,8 +56,15 @@ def answer_to_call(call):
     callback = call.data
     chat_id = call.message.chat.id
     for dis in dict.disease:
+        if 'лечение_' + dis['name'] == callback:
+            bot.send_message(chat_id=chat_id, text=dis['medicine'])
+
         if dis['name'] == callback:
-            bot.send_message(chat_id=chat_id, text=dis['description'])
+            markup_inline = InlineKeyboardMarkup()            
+            markup_inline.add(InlineKeyboardButton(text=f'Как лечиться?', callback_data=f'лечение_{dis["name"]}'))
+            text = dis['description']
+            text += '\n\nКликни по кнопке, чтобы узнать подробнее о способах лечения'
+            bot.send_message(chat_id=chat_id, text=text, reply_markup=markup_inline)
             break
 
 

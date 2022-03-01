@@ -1,17 +1,17 @@
 from pymystem3 import Mystem
-from collections import Counter
 import dict
 
 ms = Mystem()
 
 
 def clear_lemmas(lemmas):
-    return [x for x in lemmas if len(x.replace(' ', '')) > 3]
+    return [x for x in lemmas if len(x.replace(' ', '')) >= 3]
 
 
 def lemmatization(text):
     lemmas = ms.lemmatize(text)
     result = clear_lemmas(lemmas)
+    print(result)
     return result
 
 
@@ -36,4 +36,5 @@ def add_lemmas():
             dis['lemmas'] = lemmas
             print(lemmas)
         print('Лематизация', int(counter/len(dict.disease)*100), '%')
+
     print('Лематизация завершена')
